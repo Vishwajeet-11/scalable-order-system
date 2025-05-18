@@ -5,5 +5,7 @@ export const kafka = new Kafka({
   brokers: [process.env.KAFKA_BROKER || "localhost:9092"]
 });
 
+console.log("Kafka Broker:", process.env.KAFKA_BROKER);
+
 export const consumer = kafka.consumer({ groupId: "payment-consumers" });
 export const producer = kafka.producer();

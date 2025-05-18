@@ -1,11 +1,10 @@
-import pino from "pino";
+import winston from "winston";
 
-export const logger = pino({
-  transport: {
-    target: "pino-pretty",
-    options: {
-      colorize: true
-    }
-  },
-  timestamp: () => `,"timestamp":"${new Date().toISOString()}"`
+export const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.simple()
+  ),
+  transports: [new winston.transports.Console()]
 });
